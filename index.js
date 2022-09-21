@@ -1,5 +1,4 @@
 import characters from "./data/characters.json" assert { type: "json" };
-
 /* ELEMENTS */
 const characterContainer = document.getElementById("character-container");
 const genderFilter = document.getElementById("gender");
@@ -122,7 +121,8 @@ const createOptionNodes = (filterOptions, appendToElement) => {
 const createOptions = () => {
   const options = getOptions();
   for (const optionType in options) {
-    createOptionNodes(options[optionType], filterMap[optionType]);
+    const uniqueOptions = [... new Set(options[optionType])];
+    createOptionNodes(uniqueOptions, filterMap[optionType]);
   }
 };
 

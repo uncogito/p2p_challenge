@@ -238,3 +238,5 @@ search.addEventListener("input", createCards);
 for (const filter in filterMap) {
   filterMap[filter].addEventListener("input", createCards);
 }
+//printing cards on initializing- bug 1
+printCards(characters);

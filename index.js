@@ -181,30 +181,38 @@ const addEventListenerToRemoveButtons = () => {
 
 // CREATE CARDS
 const createCards = () => {
-  cleanCardContainer();
-
+    cleanCardContainer();
+// added an "if" for not filtering when set to "select all"
   let filtered = [...characters];
-
-  filtered = filtered.filter(
-    (character) => character.gender === genderFilter.value
-  );
-
-  filtered = filtered.filter(
-    (character) => character.status === statusFilter.value
-  );
-
-  filtered = filtered.filter(
-    (character) => character.species === speciesFilter.value
-  );
-
+  console.log(genderFilter.value);
+  if (!(genderFilter.value === "all")) {
+    filtered = filtered.filter(
+      (character) => character.gender === genderFilter.value
+    );
+    console.log(filtered);
+  }
+  if (!(statusFilter.value === "all")) {
+    filtered = filtered.filter(
+      (character) => character.status === statusFilter.value
+    );
+  }
+  console.log(filtered);
+  if (!(speciesFilter.value === "all")) {
+    filtered = filtered.filter(
+      (character) => character.species === speciesFilter.value
+    );
+  }
+  console.log(filtered);
   filtered = filtered.filter((character) =>
     character.name.toLowerCase().includes(search.value.toLowerCase())
   );
 
+  console.log(filtered);
   filtered.filter((character) => {
-    !chosenIds.includes(character.id);
+        !chosenIds.includes(character.id);
   });
 
+  console.log(filtered);
   if (filtered.length === 0) {
     const textElement = document.createElement("p");
     const text = document.createTextNode("No character matches the filter");
@@ -215,7 +223,8 @@ const createCards = () => {
     return;
   }
 
-  printCards(characters);
+  console.log(filtered);
+  printCards(filtered);
   addEventListenerToChooseButtons();
   addEventListenerToRemoveButtons();
 };
